@@ -1,5 +1,4 @@
-import { PrismaClient } from "@prisma/client";
-import { use } from "../routers/api";
+const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 const createToken = (id) => {
