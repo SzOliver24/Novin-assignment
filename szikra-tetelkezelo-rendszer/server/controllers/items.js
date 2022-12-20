@@ -34,7 +34,7 @@ const getItemsByCustomerId = async (req, res) => {
   const customer_id = req.params.customerId;
 
   try {
-    const items = prisma.item.findMany({
+    const items = await prisma.item.findMany({
       where: {
         customerId: customer_id,
       },

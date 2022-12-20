@@ -23,8 +23,6 @@ const LoginForm = () => {
       if (sessionStatus !== "failed") {
         navigate("/home");
       }
-      // navigate to homepage of the current user where he sees his customers and items?
-      // show somehow on the homepage his usernam on top right and include logout
     } catch (err) {
       console.error(err);
     }
@@ -38,6 +36,7 @@ const LoginForm = () => {
           name="userName"
           placeholder="Username"
           type="text"
+          required
           value={userName}
           onChange={(e) => setUserName(e.target.value)}
         />
@@ -49,6 +48,7 @@ const LoginForm = () => {
           name="password"
           placeholder="Password"
           type="password"
+          required
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />

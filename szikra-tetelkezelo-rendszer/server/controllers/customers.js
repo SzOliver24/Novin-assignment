@@ -31,7 +31,11 @@ const getCustomerById = async (req, res) => {
 
 // get all customers by userId
 const getCustomersByUserId = async (req, res) => {
-  const user_id = req.body.userId;
+  const user_id = req.userId;
+  if (!user_id) {
+    res.sendStatus(403);
+    return;
+  }
   try {
     const customers = await prisma.customer.findMany({
       where: {
@@ -46,6 +50,9 @@ const getCustomersByUserId = async (req, res) => {
 
 // add a new customer
 const addCustomer = async (req, res) => {
+  if (!req.userId) {
+    res.sendStatus(403);
+  }
   const data = {
     name: req.body.name,
     userId: req.userId,

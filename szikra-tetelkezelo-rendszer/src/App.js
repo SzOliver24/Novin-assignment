@@ -4,6 +4,10 @@ import Layout from "./components/layout/Layout";
 import CustomerHome from "./components/customerHome/CustomerHome";
 import { useSelector } from "react-redux";
 import NewCustomerForm from "./components/newCustomerForm/NewCustomerForm";
+import PreviewOfItems from "./components/previewOfItems/PreviewOfItems";
+import NewItemForm from "./components/newItemForm/NewItemForm";
+import RequireAuth from "./components/requireAuth/RequireAuth";
+import Unauthorized from "./components/unauthorized/Unauthorized";
 
 function App() {
   const userRole = useSelector((state) => state.session.role);
@@ -24,8 +28,13 @@ function App() {
             }
           />
           <Route path="/login" element={<LoginForm />} />
-          <Route path="/home" element={<CustomerHome />} />
-          <Route path="/customer/new" element={<NewCustomerForm />} />
+          <Route path="/unauthorized" element={<Unauthorized />} />
+          <Route element={<RequireAuth allowedRoles={["customer"]} />}>
+            <Route path="/home" element={<CustomerHome />} />
+            <Route path="/customer/new" element={<NewCustomerForm />} />
+            <Route path="/customer/items/:id" element={<PreviewOfItems />} />
+            <Route path="/customer/items/:id/new" element={<NewItemForm />} />
+          </Route>
         </Route>
       </Routes>
     )

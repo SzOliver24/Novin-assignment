@@ -23,7 +23,7 @@ model customer {
   name      String   @db.VarChar(120)
   createdAt DateTime @default(now())
   items     item[]
-  user      user     @relation(fields: [userId], references: [id])
+  user      user     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    String
 }
 
@@ -34,6 +34,6 @@ model item {
   comment    String   @db.VarChar(255)
   price      Int
   status     String   @db.VarChar(120)
-  customer   customer @relation(fields: [customerId], references: [id])
+  customer   customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
   customerId String
 }

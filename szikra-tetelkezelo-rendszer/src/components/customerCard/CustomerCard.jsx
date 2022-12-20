@@ -8,8 +8,7 @@ const CustomerCard = (props) => {
   const dispatch = useDispatch();
 
   const redirect = () => {
-    navigate("#");
-    // navigate(`/customer/${props.id}/?name=${props.name}`);
+    navigate(`/customer/items/${props.id}/?name=${props.name}`);
   };
 
   const handleDelete = async (customerId) => {
@@ -21,14 +20,13 @@ const CustomerCard = (props) => {
   };
 
   return (
-    <div className="customerCard" onClick={redirect}>
+    <div className="customerCard">
       <Card>
-        <CardBody>
+        <CardBody onClick={redirect}>
           <CardTitle tag="h5">{props.name}</CardTitle>
-          <CardText>{props.description}</CardText>
           <CardText>{props.createdAt}</CardText>
-          <Button onClick={() => handleDelete(props.id)}>Delete</Button>
         </CardBody>
+        <Button onClick={() => handleDelete(props.id)}>Delete</Button>
       </Card>
     </div>
   );
