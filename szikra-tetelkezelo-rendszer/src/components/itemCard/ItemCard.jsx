@@ -26,15 +26,21 @@ const ItemCard = (props) => {
       <Card>
         <CardBody>
           <CardTitle tag="h5">{props.name}</CardTitle>
-          <CardText>{props.comment}</CardText>
-          <CardText>{props.price}</CardText>
-          <CardText>{props.status}</CardText>
-          <CardText>{props.createdAt}</CardText>
-          <Button onClick={() => handleDelete(props.id, customerId)}>
-            Delete
-          </Button>
-          <Button onClick={handleNavigateToForm}>Edit</Button>
+          <CardText>Comment: {props.comment}</CardText>
+          <CardText>Price: {props.price}</CardText>
+          <CardText>Status: {props.status}</CardText>
+          <CardText>Created at: {props.createdAt}</CardText>
         </CardBody>
+        <Button
+          color="danger"
+          outline
+          onClick={() => handleDelete(props.id, customerId)}
+        >
+          Delete
+        </Button>
+        <Button color="primary" outline onClick={handleNavigateToForm}>
+          Edit
+        </Button>
       </Card>
     </div>
   );

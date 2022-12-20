@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addNewCustomer } from "../../Redux/slices/customer";
+import styles from "./newCustomerForm.module.scss";
 
 const NewCustomerForm = () => {
   const [name, setName] = useState("");
@@ -23,7 +24,7 @@ const NewCustomerForm = () => {
   };
 
   return (
-    <div className="newCustomerForm">
+    <div className={styles.form}>
       <h2>Create new customer</h2>
       <Form onSubmit={handleSubmit}>
         <FormGroup>

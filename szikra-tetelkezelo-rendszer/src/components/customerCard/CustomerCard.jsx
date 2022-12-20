@@ -24,9 +24,11 @@ const CustomerCard = (props) => {
       <Card>
         <CardBody onClick={redirect}>
           <CardTitle tag="h5">{props.name}</CardTitle>
-          <CardText>{props.createdAt}</CardText>
+          <CardText>Created at:{props.createdAt}</CardText>
         </CardBody>
-        <Button onClick={() => handleDelete(props.id)}>Delete</Button>
+        <Button color="danger" outline onClick={() => handleDelete(props.id)}>
+          Delete
+        </Button>
       </Card>
     </div>
   );

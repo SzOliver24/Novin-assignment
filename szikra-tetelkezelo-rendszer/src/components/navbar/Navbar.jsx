@@ -4,11 +4,11 @@ import {
   Button,
   Navbar as NavbarReactstrap,
   NavbarBrand,
-  NavItem,
 } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "../../Redux/slices/session";
 import { toast } from "react-toastify";
+import styles from "./navbar.module.scss";
 
 function Navbar() {
   const userRole = useSelector((state) => state.session.role);
@@ -26,14 +26,14 @@ function Navbar() {
   }
 
   return userRole === "customer" ? (
-    <NavbarReactstrap>
+    <NavbarReactstrap className={styles.nav}>
       <NavbarBrand to="/home" tag={Link}>
         <h1>Home</h1>
       </NavbarBrand>
       <Nav className="me-auto" navbar>
         {/* <NavItem>add links here</NavItem> */}
       </Nav>
-      <NavItem>{userName}</NavItem>
+      <p>{userName}</p>
       <Button
         color="success"
         outline
@@ -49,9 +49,10 @@ function Navbar() {
       &nbsp;
     </NavbarReactstrap>
   ) : (
-    <NavbarReactstrap>
+    <NavbarReactstrap className={styles.nav}>
       <NavbarBrand>
-        <h1>Please log in to your account to continue</h1>
+        <h2>Welcome to Szikra Customer and Item Management System</h2>
+        <h4>Please log in to continue</h4>
       </NavbarBrand>
     </NavbarReactstrap>
   );

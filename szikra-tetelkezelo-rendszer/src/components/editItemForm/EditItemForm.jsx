@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { editItem } from "../../Redux/slices/item";
+import styles from "./editItemForm.module.scss";
 
 const EditItemForm = () => {
   const navigate = useNavigate();
@@ -28,7 +29,7 @@ const EditItemForm = () => {
   };
 
   return (
-    <div className="editItemForm">
+    <div className={styles.form}>
       <h2>Edit item</h2>
       <Form onSubmit={handleSubmit}>
         <FormGroup>

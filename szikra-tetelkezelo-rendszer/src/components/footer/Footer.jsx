@@ -1,7 +1,9 @@
+import styles from "./Footer.module.scss";
+
 const Footer = () => {
   return (
-    <div className="footer">
-      <h1>copyright szikra tetelkezelo rendszer</h1>
+    <div className={styles.Footer}>
+      &copy; 2022 Szikra Customer and Item Management System
     </div>
   );
 };

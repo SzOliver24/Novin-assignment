@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import PreviewOfCustomers from "../previewOfCustomers/PreviewOfCustomers";
 import { Button } from "reactstrap";
 import { useNavigate } from "react-router-dom";
+import styles from "./customerHome.module.scss";
 
 const CustomerHome = () => {
   const userId = useSelector((state) => state.session.id);
@@ -14,16 +15,20 @@ const CustomerHome = () => {
 
   useEffect(() => {
     dispatch(fetchCustomersOfUser(userId));
-  }, [dispatch]);
+  }, [dispatch, userId]);
 
   const handleNavigateToForm = () => {
     navigate("/customer/new");
   };
 
   return (
-    <div className="customerHome">
-      <h1>Customer home</h1>
-      <Button onClick={handleNavigateToForm}>Create new customers</Button>
+    <div className={styles.customerHome}>
+      <div className="header">
+        <h1>Current customers:</h1>
+        <Button color="success" onClick={handleNavigateToForm}>
+          Create new customers
+        </Button>
+      </div>
       <PreviewOfCustomers />
     </div>
   );

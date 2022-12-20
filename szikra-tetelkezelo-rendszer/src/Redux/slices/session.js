@@ -73,12 +73,12 @@ export const sessionSlice = createSlice({
         state.id = action.payload.id;
         state.role = action.payload.role;
         state.userName = action.payload.userName;
-        state.messages = [
-          { message: "Successfully logged in", type: "success" },
-        ];
-        toast.success(`Successfully logged in as ${state.userName}`, {
-          position: "bottom-left",
-        });
+        state.messages = toast.success(
+          `Successfully logged in as ${state.userName}`,
+          {
+            position: "bottom-left",
+          }
+        );
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.status = "failed";

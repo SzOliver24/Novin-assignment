@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { fetchItemsOfCustomer } from "../../Redux/slices/item";
 import ItemCard from "../itemCard/ItemCard";
+import styles from "./previewOfItems.module.scss";
 
 const PreviewOfItems = () => {
   const dispatch = useDispatch();
@@ -28,8 +29,9 @@ const PreviewOfItems = () => {
     );
   });
   return (
-    <div className="previewOfItems">
-      <Button onClick={handleNavigateToForm}>
+    <div className={styles.items}>
+      <h1>Current items:</h1>
+      <Button color="success" onClick={handleNavigateToForm}>
         Create new item for this customer
       </Button>
       <Container fluid>

@@ -13,7 +13,6 @@ const PreviewOfCustomers = () => {
   });
   return (
     <div className="previewOfCustomers">
-      <p>Customerlist goes here</p>
       <Container fluid>
         <Row>{allCustomers}</Row>
       </Container>

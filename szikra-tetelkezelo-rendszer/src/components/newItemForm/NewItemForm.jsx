@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addNewItem } from "../../Redux/slices/item";
+import styles from "./newItemForm.module.scss";
 
 const NewItemForm = () => {
   const navigate = useNavigate();
@@ -28,7 +29,7 @@ const NewItemForm = () => {
   };
 
   return (
-    <div className="newCustomerForm">
+    <div className={styles.form}>
       <h2>Create new customer</h2>
       <Form onSubmit={handleSubmit}>
         <FormGroup>
