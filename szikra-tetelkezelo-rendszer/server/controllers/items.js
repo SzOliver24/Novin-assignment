@@ -22,7 +22,7 @@ const getItemById = async (req, res) => {
     if (item) {
       res.status(200).json(item);
     } else {
-      res.status(404).json({ message: "Tétel nem található" });
+      res.status(404).json({ message: "Cannot find item" });
     }
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -73,7 +73,7 @@ const deleteItemById = async (req, res) => {
       },
     });
     if (!item) {
-      res.status(404).json({ message: "Tétel nem található" });
+      res.status(404).json({ message: "Cannot find item" });
       return;
     }
     const removedItem = await prisma.item.delete({
@@ -82,7 +82,7 @@ const deleteItemById = async (req, res) => {
       },
     });
     if (removedItem) {
-      res.status(200).json({ message: "Tétel törölve" });
+      res.status(200).json({ message: "Item deleted" });
     }
   } catch (err) {
     res.status(500).json({ message: err.message });

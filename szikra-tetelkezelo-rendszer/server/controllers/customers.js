@@ -22,7 +22,7 @@ const getCustomerById = async (req, res) => {
     if (customer) {
       res.status(200).json(customer);
     } else {
-      res.status(404).json({ message: "Vevő nem található" });
+      res.status(404).json({ message: "Cannot find customer" });
     }
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -31,10 +31,9 @@ const getCustomerById = async (req, res) => {
 
 // get all customers by userId
 const getCustomersByUserId = async (req, res) => {
-  const user_id = req.params.userId;
-
+  const user_id = req.body.userId;
   try {
-    const customers = prisma.customer.findMany({
+    const customers = await prisma.customer.findMany({
       where: {
         userId: user_id,
       },
@@ -49,7 +48,7 @@ const getCustomersByUserId = async (req, res) => {
 const addCustomer = async (req, res) => {
   const data = {
     name: req.body.name,
-    userId: req.body.userId,
+    userId: req.userId,
   };
   try {
     const customer = await prisma.customer.create({
@@ -70,7 +69,7 @@ const deleteCustomerById = async (req, res) => {
       },
     });
     if (!customer) {
-      res.status(404).json({ message: "Vevő nem található" });
+      res.status(404).json({ message: "Cannot find customer" });
       return;
     }
     const removedCustomer = await prisma.customer.delete({
@@ -79,7 +78,7 @@ const deleteCustomerById = async (req, res) => {
       },
     });
     if (removedCustomer) {
-      res.status(200).json({ message: "Vevő törölve" });
+      res.status(200).json({ message: "Customer deleted" });
     }
   } catch (err) {
     res.status(500).json({ message: err.message });
