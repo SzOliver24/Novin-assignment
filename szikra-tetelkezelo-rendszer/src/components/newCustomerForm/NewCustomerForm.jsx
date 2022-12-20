@@ -35,6 +35,7 @@ const NewCustomerForm = () => {
             name="name"
             placeholder="Please enter full name"
             type="text"
+            required
             value={name}
             onChange={(e) => setName(e.target.value)}
           />

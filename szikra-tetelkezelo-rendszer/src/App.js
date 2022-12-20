@@ -8,6 +8,7 @@ import PreviewOfItems from "./components/previewOfItems/PreviewOfItems";
 import NewItemForm from "./components/newItemForm/NewItemForm";
 import RequireAuth from "./components/requireAuth/RequireAuth";
 import Unauthorized from "./components/unauthorized/Unauthorized";
+import EditItemForm from "./components/editItemForm/EditItemForm";
 
 function App() {
   const userRole = useSelector((state) => state.session.role);
@@ -34,6 +35,7 @@ function App() {
             <Route path="/customer/new" element={<NewCustomerForm />} />
             <Route path="/customer/items/:id" element={<PreviewOfItems />} />
             <Route path="/customer/items/:id/new" element={<NewItemForm />} />
+            <Route path="/customer/items/:id/edit" element={<EditItemForm />} />
           </Route>
         </Route>
       </Routes>

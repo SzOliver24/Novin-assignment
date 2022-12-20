@@ -41,6 +41,16 @@ export const deleteItem = createAsyncThunk(
   }
 );
 
+export const editItem = createAsyncThunk("meals/editMeal", async (itemData) => {
+  try {
+    await api.put(`/item/edit`, itemData);
+    const response = await api.get(`/items/${itemData.customerId}`);
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+});
+
 export const itemsSlice = createSlice({
   name: "items",
   initialState,
@@ -79,6 +89,18 @@ export const itemsSlice = createSlice({
         state.items = action.payload;
       })
       .addCase(deleteItem.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      });
+    builder
+      .addCase(editItem.pending, (state, action) => {
+        state.status = "loading";
+      })
+      .addCase(editItem.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.items = action.payload;
+      })
+      .addCase(editItem.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
       });

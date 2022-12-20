@@ -1,10 +1,11 @@
 import { useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Card, CardBody, CardTitle, CardText, Button } from "reactstrap";
 import { deleteItem } from "../../Redux/slices/item";
 
 const ItemCard = (props) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const urlParams = useParams();
   const customerId = urlParams.id;
 
@@ -14,6 +15,10 @@ const ItemCard = (props) => {
     } catch (error) {
       console.error("Failed to delete customer: ", error);
     }
+  };
+
+  const handleNavigateToForm = () => {
+    navigate(`/customer/items/${props.id}/edit`);
   };
 
   return (
@@ -28,7 +33,7 @@ const ItemCard = (props) => {
           <Button onClick={() => handleDelete(props.id, customerId)}>
             Delete
           </Button>
-          <Button>Edit</Button>
+          <Button onClick={handleNavigateToForm}>Edit</Button>
         </CardBody>
       </Card>
     </div>

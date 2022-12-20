@@ -35,6 +35,7 @@ const {
   getItemsByCustomerId,
   addItem,
   deleteItemById,
+  updateItem,
 } = require("../controllers/items.js");
 
 const {
@@ -55,6 +56,7 @@ api.get("/items", getItems);
 api.get("/item/:id", getItemById);
 api.get("/items/:customerId", getItemsByCustomerId);
 api.post("/item", addItem);
+api.put("/item/edit", updateItem);
 api.delete("/item/:id", deleteItemById);
 
 // User endpoints

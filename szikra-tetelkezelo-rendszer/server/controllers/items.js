@@ -89,6 +89,37 @@ const deleteItemById = async (req, res) => {
   }
 };
 
+// update item by id
+const updateItem = async (req, res) => {
+  try {
+    const item = await prisma.item.findUnique({
+      where: {
+        id: req.body.itemId,
+      },
+    });
+    if (item) {
+      const updatedItem = await prisma.item.update({
+        where: {
+          id: req.body.itemId,
+        },
+        data: {
+          name: undefined,
+          comment: undefined,
+          price: undefined,
+          status: req.body.status,
+          customerId: req.body.customerId,
+        },
+      });
+      res.status(200).json(updatedItem);
+    } else {
+      res.status(404).json({ message: "Item not found" });
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: err.message });
+  }
+};
+
 // export the functions
 module.exports = {
   getItems,
@@ -96,4 +127,5 @@ module.exports = {
   getItemsByCustomerId,
   addItem,
   deleteItemById,
+  updateItem,
 };

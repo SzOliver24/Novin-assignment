@@ -40,6 +40,7 @@ const NewItemForm = () => {
             name="name"
             placeholder="Please enter name of the item"
             type="text"
+            required
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
@@ -53,6 +54,7 @@ const NewItemForm = () => {
             name="comment"
             placeholder="Please give a short comment about the item"
             type="text"
+            required
             value={comment}
             onChange={(e) => setComment(e.target.value)}
           />
@@ -66,6 +68,7 @@ const NewItemForm = () => {
             name="price"
             placeholder="Please enter a price"
             type="text"
+            required
             value={price}
             onChange={(e) => setPrice(e.target.value)}
           />
