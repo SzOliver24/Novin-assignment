@@ -1,15 +1,14 @@
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { loginUser } from "../../Redux/slices/session";
 import { useNavigate } from "react-router-dom";
 import styles from "./loginForm.module.scss";
+import AlertMessages from "../alertMessages/AlertMessages";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const sessionStatus = useSelector((state) => state.session.status);
 
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
@@ -21,12 +20,7 @@ const LoginForm = () => {
 
     try {
       await dispatch(loginUser(loginBody)).unwrap();
-      console.log(sessionStatus);
-      if (sessionStatus !== "failed") {
-        navigate("/home");
-      } else {
-        navigate("/login");
-      }
+      navigate("/home");
     } catch (err) {
       console.error(err);
     }
@@ -34,6 +28,7 @@ const LoginForm = () => {
 
   return (
     <div className={styles.loginForm}>
+      <AlertMessages slice="session" />
       <Form onSubmit={handleFormSubmit}>
         <FormGroup floating>
           <Input

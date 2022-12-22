@@ -45,23 +45,24 @@ const getCurrentUser = async (req, res) => {
 
 // log in user
 const postLogin = async (req, res) => {
+  const message = [];
+
   const user = await prisma.user.findUnique({
     where: {
       userName: req.body.userName,
     },
   });
   if (!user) {
-    res
-      .status(400)
-      .json({ message: "Cannot find user with the given username" });
-    return;
+    message.push("Cannot find user with the given username. ");
+    return res.status(400).json({ message });
   }
   try {
     if (req.body.password == user.password) {
       const accessToken = createToken(user.id);
       res.status(201).json({ accessToken: accessToken });
     } else {
-      res.status(405).json({ message: "Incorrect password" });
+      message.push("Incorrect password, please try again. ");
+      res.status(405).json({ message });
     }
   } catch (err) {
     res.status(500).json({ message: err.message });

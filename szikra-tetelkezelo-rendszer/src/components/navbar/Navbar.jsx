@@ -22,7 +22,7 @@ function Navbar() {
     toast.success(`You have successfully logged out`, {
       position: "bottom-left",
     });
-    navigate("/login");
+    navigate("/");
   }
 
   return userRole === "customer" ? (

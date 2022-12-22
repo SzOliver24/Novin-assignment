@@ -15,7 +15,9 @@ function App() {
   const sessionStatus = useSelector((state) => state.session.status);
 
   return (
-    (sessionStatus === "succeeded" || sessionStatus === "failed") && (
+    (sessionStatus === "succeeded" ||
+      sessionStatus === "failed" ||
+      sessionStatus === "loading") && (
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route
